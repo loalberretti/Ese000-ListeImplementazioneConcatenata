@@ -6,8 +6,18 @@
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLInsertAtBeginning(LLElement * first, int key) {
-    // TODO To be implemented
-    return NULL;
+    LLElement * temp;
+    temp = (LLElement *)malloc(sizeof(LLElement));
+    if(temp != NULL) {/*
+        temp=first;
+        first->key=key;
+        first->next=temp;*/
+    
+        temp->next = first;
+        temp->key = key;
+        first = temp;
+    }
+    return first;
 }
 
 /*
@@ -15,8 +25,6 @@ LLElement * LLInsertAtBeginning(LLElement * first, int key) {
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLInsertAtEnd(LLElement * first, int key) {
-    // TODO To be implemented
-    return NULL;
 }
 
 /*
@@ -35,16 +43,32 @@ LLElement * LLInsertAtPosition(LLElement * first, int key, int position) {
  * Returns the size of the list.
  */
 int LLSize(LLElement * first) {
-    // TODO To be implemented
-    return 0;
+    int i=0;
+    LLElement *temp;
+    temp=first;
+    while(temp!=NULL)
+    {
+        
+        temp=temp->next;   //scorro la lista
+        i++;
+    }
+    return(i);
+
 }   
 
 /*
  * Returns the key at the specified position.
  */ 
 int LLGetKey(LLElement * first, int position) {
-    // TODO To be implemented
-    return 0;
+    int i;
+    LLElement *temp;
+    temp=first; //il puntatore parte dall'inizio
+    for(i=0;i<position;i++)
+    {
+        temp=temp->next;
+        
+    }    
+    return (temp->key);
 }
 
 /*
@@ -62,16 +86,25 @@ int LLFindKey(LLElement * first, int key, int startPosition) {
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLRemoveFirst(LLElement * first) {
-    // TODO To be implemented
-    return NULL;
+    LLElement * temp;
+    temp = (LLElement *)malloc(sizeof(LLElement));
+    if(temp != NULL) {
+        temp=first; //faccio puntare al primo della lista
+        first=first->next; //due indirizzi accendo al campo 
+        free(temp);
+    }
+    return first;
 }
 
 /*
  * Remove the last element of the list.
  * Returns the updated pointer to the first element of the list.
  */
-LLElement * LLRemoveLast(LLElement * first) {
-    // TODO To be implemented
+LLElement * LLRemoveLast(LLElement * first){
+    LLElement * temp;
+    temp = (LLElement *)malloc(sizeof(LLElement));
+    if(temp != NULL) {
+   
     return NULL;
 }
 
