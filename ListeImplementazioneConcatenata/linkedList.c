@@ -31,7 +31,7 @@ LLElement * LLInsertAtEnd(LLElement * first, int key) {
         {
             
         }
-   
+    }
 }
 
 /*
@@ -155,5 +155,3 @@ LLElement * LLEmptyList(LLElement * first) {
    // TODO To be implemented
     return NULL;
 }
-
-
