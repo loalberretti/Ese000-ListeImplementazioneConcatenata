@@ -68,5 +68,6 @@ LLElement * LLRemoveLast(LLElement * first);
  */
 LLElement * LLRemoveAtPosition(LLElement * first, int position);
 
-
+/*Empties the list */
+LLElement * LLEmptyList(LLElement * first);
 

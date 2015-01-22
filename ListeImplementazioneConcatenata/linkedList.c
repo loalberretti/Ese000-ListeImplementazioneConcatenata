@@ -8,14 +8,12 @@
 LLElement * LLInsertAtBeginning(LLElement * first, int key) {
     LLElement * temp;
     temp = (LLElement *)malloc(sizeof(LLElement));
-    if(temp != NULL) {/*
-        temp=first;
-        first->key=key;
-        first->next=temp;*/
-    
+    if(temp != NULL) {
+        
         temp->next = first;
         temp->key = key;
         first = temp;
+        
     }
     return first;
 }
@@ -25,6 +23,15 @@ LLElement * LLInsertAtBeginning(LLElement * first, int key) {
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLInsertAtEnd(LLElement * first, int key) {
+    LLElement **temp;
+    if(first!=NULL)
+    {
+        temp=&first;
+        while((*temp)->next!=NULL) //lo scorro fino all'ultimo
+        {
+            
+        }
+   
 }
 
 /*
@@ -53,7 +60,6 @@ int LLSize(LLElement * first) {
         i++;
     }
     return(i);
-
 }   
 
 /*
@@ -77,7 +83,7 @@ int LLGetKey(LLElement * first, int position) {
  * Returns -1 if not found. 
  */ 
 int LLFindKey(LLElement * first, int key, int startPosition) {
-    // TODO To be implemented
+    
     return -1;
 }
 
@@ -101,11 +107,36 @@ LLElement * LLRemoveFirst(LLElement * first) {
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLRemoveLast(LLElement * first){
-    LLElement * temp;
-    temp = (LLElement *)malloc(sizeof(LLElement));
-    if(temp != NULL) {
-   
-    return NULL;
+   /*LLElement *temp;
+    LLElement *new;
+    if(first!=NULL)
+    {    
+        temp=first; //il puntatore parte dall'inizio
+        new=first;
+     while(temp->next->next!= NULL)
+        {   
+        
+            temp=temp->next;
+        }
+        
+            new=temp;
+            temp=temp->next;
+            free(temp);
+            new->next=NULL;
+    }
+    return first;*/
+    LLElement **temp;
+    if(first!=NULL)
+    {
+        temp=&first;
+        while((*temp)->next!=NULL)
+        {
+            temp=&((*temp)->next);
+        }
+        *temp=NULL;
+        free(*temp);
+    }
+    return first;
 }
 
 /*
@@ -120,6 +151,9 @@ LLElement * LLRemoveAtPosition(LLElement * first, int position) {
     return NULL;
 }
 
-
+LLElement * LLEmptyList(LLElement * first) {
+   // TODO To be implemented
+    return NULL;
+}
 
 
