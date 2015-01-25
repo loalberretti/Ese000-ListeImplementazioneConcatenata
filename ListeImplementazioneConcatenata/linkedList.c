@@ -6,13 +6,13 @@
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLInsertAtBeginning(LLElement * first, int key) {
-    LLElement *temp;
-    temp=(LLElement*)malloc(sizeof(LLElement));
-    if(temp != NULL) //verifico se è stato allocato
+    LLElement *newelement;
+    newelement=(LLElement*)malloc(sizeof(LLElement));
+    if(newelement != NULL) //verifico se è stato allocato
     {
-        temp->next= first;
-        temp->key= key;
-        first=temp;
+        newelement->next= first;
+        newelement->key= key;
+        first=newelement;
     }
     return first;
 }
@@ -23,18 +23,18 @@ LLElement * LLInsertAtBeginning(LLElement * first, int key) {
  */
 LLElement * LLInsertAtEnd(LLElement * first, int key) {
     LLElement **temp;
-    LLElement *new;
-    new=(LLElement*)malloc(sizeof(LLElement));
-    if(new!=NULL)
+    LLElement *newelement;
+    newelement=(LLElement*)malloc(sizeof(LLElement));
+    if(newelement!=NULL)
     {
         temp=&first;
         while(*temp!=NULL) //quando sono all'ultimo esco
         {
             temp=&((*temp)->next);
         }
-        new->key=key;
-        new->next=NULL;
-        *temp=new;// allaccio la lista
+        newelement->key=key;
+        newelement->next=NULL;
+        *temp=newelement;// allaccio la lista
     }
     return first;
 }
@@ -48,16 +48,16 @@ LLElement * LLInsertAtEnd(LLElement * first, int key) {
  */
 LLElement * LLInsertAtPosition(LLElement * first, int key, int position) {
     LLElement **temp;
-    LLElement *new;
-    new=(LLElement*)malloc(sizeof(LLElement));
-    if(new!=NULL){
+    LLElement *newelement;
+    newelement=(LLElement*)malloc(sizeof(LLElement));
+    if(newelement!=NULL){
         temp=&first;
         int i;
         for (i=0;i<position;i++)
             temp=&((*temp)->next);
-        new->key=key;
-        new->next= *temp;
-        *temp=new;
+        newelement->key=key;
+        newelement->next= *temp;
+        *temp=newelement;
     }
     return first;
 }
@@ -98,28 +98,34 @@ int LLGetKey(LLElement * first, int position) {
  * Returns -1 if not found. 
  */ 
 int LLFindKey(LLElement * first, int key, int startPosition) {
-    int r=-1;
+    int positionkey=-1; //chiave non trovata
     int i;
-    for(i=0;i<startPosition;i++)
+    for(i=0;i<startPosition;i++) // arrivo alla posizione iniziale
     {
-        
+        first=first->next; //scorro
     }
-    
-    
-    return r;
+    while(first!= NULL && positionkey ==-1){
+        if(first->key == key) {
+            positionkey = i;
+        }
+        first=first->next;
+        i++;
+    }
+    return positionkey;
 }
+
 
 /*
  * Remove the first element of the list.
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLRemoveFirst(LLElement * first) {
-    LLElement * temp;
+    LLElement *DeleteElement;
     
     if(first != NULL) { //verifico che la lista esista
-        temp=first; //faccio puntare temp all'inzio della lista
-        first=first->next; //accendo al campo e  scorro la lista 
-        free(temp); //elimino il primo
+        DeleteElement=first; //faccio puntare temp all'inzio della lista
+        first=first->next; //accendo al campo lo riallaccio al prossimo 
+        free(DeleteElement); //elimino il primo
     }
     return first;
 }
@@ -129,16 +135,16 @@ LLElement * LLRemoveFirst(LLElement * first) {
  * Returns the updated pointer to the first element of the list.
  */
 LLElement * LLRemoveLast(LLElement * first){
-    LLElement **temp;
+    LLElement **DeleteElement;
     if(first!=NULL)
     {
-        temp=&first; //metto il puntatore all'inzio della lista
-        while((*temp)->next!=NULL) // mi fermo all'ultimo della lista
+        DeleteElement=&first; //metto il puntatore all'inzio della lista
+        while((*DeleteElement)->next!=NULL) // mi fermo all'ultimo della lista
         {
-            temp=&((*temp)->next); //lo scorro
+            DeleteElement=&((*DeleteElement)->next); //lo scorro
         }
-        free(*temp);
-        *temp=NULL;
+        free(*DeleteElement);
+        *DeleteElement=NULL;
     }
     return first;
 }
@@ -152,23 +158,30 @@ LLElement * LLRemoveLast(LLElement * first){
  */
 LLElement * LLRemoveAtPosition(LLElement * first, int position) {
     LLElement **temp;
-    LLElement *elimina;
+    LLElement *DeleteElement;
         temp=&first;
         int i;
         for(i=0;i<position;i++)// quando sono arrivato all' elemento del campo next che punta all'elemento che devo eliminare 
         {
              temp=&((*temp)->next); 
         }
-        elimina=*temp; //posizione da eliminare
+        DeleteElement=*temp; //posizione da eliminare
         if((*temp)->next!=NULL){
                 *temp=((*temp)->next);//lo riallaccio al prossimo elemento
         }
             
-    free(elimina);
+    free(DeleteElement);
     return first;
 }
 
 LLElement * LLEmptyList(LLElement * first) {
-   // TODO To be implemented
+    LLElement *DeleteElement;
+    while(first != NULL)
+    {
+        DeleteElement=first;
+        first=first->next;
+        free(DeleteElement);
+    }
     return NULL;
 }
+
