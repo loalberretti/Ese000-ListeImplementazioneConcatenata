@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     }
     
     // Operazioni 60
-    list = LLRemoveAtPosition(list, 1);
+        list = LLRemoveAtPosition(list, 1);
     
     assertSize(60, list, 5);
     assertKey(61, list, 0, 200);
